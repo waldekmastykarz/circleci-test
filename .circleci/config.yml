@@ -30,7 +30,7 @@ jobs:
           at: ~/circleci-test
       - run:
           name: Install global tools
-          command: sudo npm i -g istanbul
+          command: sudo npm i -g nyc
       - run:
           name: Test
           command: npm test
