@@ -1,0 +1,25 @@
+{
+  "name": "circleci-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc -r=lcov -r=text mocha 'dist/**/*.spec.js'",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waldekmastykarz/circleci-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waldekmastykarz/circleci-test/issues"
+  },
+  "homepage": "https://github.com/waldekmastykarz/circleci-test#readme",
+  "devDependencies": {
+    "@types/node": "^8.0.47",
+    "istanbul": "^0.4.5"
+  }
+}
