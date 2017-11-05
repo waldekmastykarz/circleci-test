@@ -1,8 +1,12 @@
+defaults: &defaults
+  working_directory: /tmp
+  docker:
+    - image: circleci/node:6.11.5
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:6.11.5
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -14,10 +18,13 @@ jobs:
       - run:
           name: Build
           command: npm run build
+      - persist_to_workspace:
+          root: ./
   test:
-    docker:
-      - image: circleci/node:6.11.5
+    <<: *defaults
     steps:
+      - attach_workspace:
+          at: /tmp
       - checkout
       - run:
           name: Install global tools
