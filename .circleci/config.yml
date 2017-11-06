@@ -64,7 +64,7 @@ jobs:
           command: echo "npm publish"
   build_docs:
     docker:
-      - image: circleci/python:2.7.11
+      - image: circleci/python:2.7-jessie-node
     steps:
       - attach_workspace:
           at: ~/circleci-test
