@@ -73,7 +73,7 @@ jobs:
           command: sudo pip install mkdocs
       - run:
           name: cd to docs
-          command: cd docs
+          command: ls
       - run:
           name: Build docs
           command: mkdocs build
