@@ -90,15 +90,15 @@ workflows:
           requires:
             - test
           filters:
-            branches:
-              only: master
             tags:
               only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              only: master
       - build_docs:
           requires:
             - publish
           filters:
-            branches:
-              only: master
             tags:
               only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              only: master
