@@ -63,6 +63,7 @@ jobs:
           name: Publish
           command: echo "npm publish"
   build_docs:
+    working_directory: ~/circleci-test
     docker:
       - image: circleci/python:2.7-jessie-node
     steps:
@@ -73,7 +74,7 @@ jobs:
           command: sudo pip install mkdocs
       - run:
           name: cd to docs
-          command: ls -l
+          command: cd docs
       - run:
           name: Build docs
           command: mkdocs build
