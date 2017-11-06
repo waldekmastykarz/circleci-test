@@ -70,7 +70,7 @@ jobs:
           at: ~/circleci-test
       - run:
           name: Install MkDocs
-          command: pip install mkdocs
+          command: sudo pip install mkdocs
       - run:
           name: Build docs
           command: mkdocs build
