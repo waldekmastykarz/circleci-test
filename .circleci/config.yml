@@ -47,7 +47,7 @@ jobs:
           at: ~/circleci-test
       - run:
           name: Publish @next
-          command: #npm publish --tag next
+          command: npm publish --tag next
   publish:
     <<: *defaults
     steps:
@@ -55,7 +55,7 @@ jobs:
           at: ~/circleci-test
       - run:
           name: Publish
-          command: #npm publish
+          command: npm publish
   build_docs:
     docker:
       - image: circleci/python:2.7.11
