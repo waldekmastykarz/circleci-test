@@ -5,6 +5,13 @@ defaults: &defaults
 
 version: 2
 jobs:
+  build1:
+    docker:
+      - image: circleci/node:6.11.5
+    steps:
+      - run:
+          name: Echo
+          command: echo "build"
   build:
     <<: *defaults
     steps:
@@ -80,7 +87,7 @@ workflows:
   version: 2
   release:
     jobs:
-      - build:
+      - build1:
           filters:
             tags:
               only: /.*?/
