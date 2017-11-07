@@ -69,6 +69,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/circleci-test
+      - add_ssh_keys:
+          fingerprints:
+            - "70:ec:f2:a1:cc:fa:be:9d:24:73:11:27:61:52:04:e3"
       - run:
           name: Install MkDocs
           command: sudo pip install mkdocs
