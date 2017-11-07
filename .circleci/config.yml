@@ -5,13 +5,6 @@ defaults: &defaults
 
 version: 2
 jobs:
-  build1:
-    docker:
-      - image: circleci/node:6.11.5
-    steps:
-      - run:
-          name: Echo
-          command: echo "build"
   build:
     <<: *defaults
     steps:
@@ -87,59 +80,29 @@ workflows:
   version: 2
   release:
     jobs:
-      - build1:
+      - build
+      - test:
+          requires:
+            - build
+      - publish_next:
+          requires:
+            - test
+          filters:
+            branches:
+              only: dev
+      - publish:
+          requires:
+            - test
           filters:
             tags:
               only: /^v[0-9]+\.[0-9]+\.[0-9]+/
             branches:
               ignore: /.*/
-#  release:
-#    jobs:
-#      - build:
-#          filters:
-#            branches:
-#              only: master
-#            tags:
-#              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
-#      - test:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
-#            tags:
-#              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
-#      - publish:
-#          requires:
-#            - test
-#          filters:
-#            branches:
-#              only: master
-#            tags:
-#              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
-#      - deploy_docs:
-#          requires:
-#            - publish
-#          filters:
-#            branches:
-#              only: master
-#            tags:
-#              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
-#  release_next:
-#    jobs:
-#      - build:
-#          filters:
-#            branches:
-#              only: dev
-#      - test:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: dev
-#      - publish_next:
-#          requires:
-#            - test
-#          filters:
-#            branches:
-#              only: dev
+      - deploy_docs:
+          requires:
+            - publish
+          filters:
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
