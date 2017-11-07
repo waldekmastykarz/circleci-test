@@ -133,7 +133,7 @@ workflows:
               ignore: /.*/
   build_docs:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               only: master
