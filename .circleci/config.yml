@@ -73,6 +73,9 @@ jobs:
           name: Install MkDocs
           command: sudo pip install mkdocs
       - run:
+          name: Add GitHub.com to known hosts
+          command: sudo ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
           name: Build docs
           command: mkdocs gh-deploy
 
