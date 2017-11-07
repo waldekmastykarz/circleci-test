@@ -75,9 +75,9 @@ jobs:
       - run:
           name: Install MkDocs
           command: sudo pip install mkdocs
-#      - run:
-#          name: Avoid hosts unknown for github
-#          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+     - run:
+         name: Avoid hosts unknown for github
+         command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Build docs
           command: mkdocs gh-deploy
