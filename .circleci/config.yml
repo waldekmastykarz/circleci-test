@@ -78,18 +78,40 @@ jobs:
 
 workflows:
   version: 2
-  release:
+  release_next:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: dev
       - test:
           requires:
             - build
+          filters:
+            branches:
+              only: dev
       - publish_next:
           requires:
             - test
           filters:
             branches:
               only: dev
+  release:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
+      - test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
       - publish:
           requires:
             - test
