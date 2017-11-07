@@ -92,7 +92,7 @@ workflows:
             tags:
               only: /.*?/
             branches:
-              only: master
+              ignore: /.*/
 #  release:
 #    jobs:
 #      - build:
