@@ -49,8 +49,11 @@ jobs:
           name: Write .npmrc
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run:
+          name: Stamp beta to package version
+          command: node scripts/update-package-version.js $CIRCLE_SHA1
+      - run:
           name: Publish @next
-          command: echo "npm publish --tag next"
+          command: npm publish --tag next
   publish:
     <<: *defaults
     steps:
