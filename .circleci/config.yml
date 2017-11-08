@@ -53,7 +53,7 @@ jobs:
           command: node scripts/update-package-version.js $CIRCLE_SHA1
       - run:
           name: Publish @next
-          command: npm publish --tag next
+          command: echo "npm publish --tag next"
   publish:
     <<: *defaults
     steps:
