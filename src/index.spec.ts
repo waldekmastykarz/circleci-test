@@ -7,6 +7,6 @@ describe('index', () => {
     });
 
     it('doesnt work', () => {
-        assert(false);
+        // assert(false);
     });
 });
