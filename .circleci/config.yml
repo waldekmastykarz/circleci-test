@@ -14,9 +14,15 @@ jobs:
       - run:
           name: Install global tools
           command: sudo npm i -g typescript
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Restore dependencies
           command: npm i
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
           name: Build
           command: npm run build
