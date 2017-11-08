@@ -14,9 +14,15 @@ jobs:
       - run:
           name: Install global tools
           command: sudo npm i -g typescript
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Restore dependencies
           command: npm i
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
           name: Build
           command: npm run build
@@ -31,12 +37,9 @@ jobs:
       - run:
           name: Test
           command: npm test
-      - run:
-          name: Generate code coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov'
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
+#      - run:
+#          name: Generate code coverage
+#          command: './node_modules/.bin/nyc report --reporter=text-lcov'
       - store_artifacts:
           path: coverage
           prefix: coverage
@@ -48,6 +51,9 @@ jobs:
       - run:
           name: Write .npmrc
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run:
+          name: Stamp beta to package version
+          command: node scripts/update-package-version.js $CIRCLE_SHA1
       - run:
           name: Publish @next
           command: echo "npm publish --tag next"
