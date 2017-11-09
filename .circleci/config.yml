@@ -37,9 +37,9 @@ jobs:
       - run:
           name: Test
           command: npm test
-#      - run:
-#          name: Generate code coverage
-#          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+      - run:
+          name: Run coveralls
+          command: './node_modules/.bin/nyc report --reporter=text-lcov | coveralls'
       - store_artifacts:
           path: coverage
           prefix: coverage
