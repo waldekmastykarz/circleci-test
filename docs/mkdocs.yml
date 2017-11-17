@@ -1,1 +1,14 @@
 site_name: My Docs
+theme:
+  name: 'material'
+  palette:
+    primary: 'red'
+  logo: 'images/office.png'
+  feature:
+    tabs: true
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
