@@ -90,6 +90,18 @@ jobs:
 
 workflows:
   version: 2
+  check_pr:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /^(dev|master)/
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /^(dev|master)/
   release_next:
     jobs:
       - build:
