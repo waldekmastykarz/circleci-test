@@ -1,5 +1,5 @@
 {
-  "name": "circleci-test",
+  "name": "circleci-test1",
   "version": "1.0.10",
   "description": "",
   "main": "index.js",
@@ -21,8 +21,10 @@
   "devDependencies": {
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.0.47",
+    "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
     "nyc": "^11.3.0"
   }
 }
+
